@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return Contact::OrderBy('id','desc')->get();
     }
 
     /**
@@ -25,7 +25,25 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contact = new Contact;
+        $contact->create($request->all());
+        /*$fields = $request->validate([
+            'first_name' => 'required|string',
+            'last_name'  => 'required|string',
+            'phone'      => 'required',
+            'address'    => 'required'
+        ]);
+
+        $contact = Contact::create([
+            'first_name' => $fields['first_name'],
+            'last_name'  => $fields['last_name'],
+            'phone'      => $fields['phone'],
+            'address'    => $fields['address']
+        ]);*/
+
+        /*return response()->json([
+            'res' => 'Registro Agregado'
+        ]);*/
     }
 
     /**
@@ -36,7 +54,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return $contact;
     }
 
     /**
@@ -49,6 +67,20 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         //
+        $contact->update($request->all());
+        /*$fields = $request->validate([
+            'first_name' => 'required|string',
+            'last_name'  => 'required|string',
+            'phone'      => 'required',
+            'address'    => 'required'
+        ]);
+
+        $contact->update([
+            'first_name' => $fields['first_name'],
+            'last_name'  => $fields['last_name'],
+            'phone'      => $fields['phone'],
+            'address'    => $fields['address']
+        ]);*/
     }
 
     /**
@@ -59,6 +91,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
     }
 }

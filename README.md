@@ -8,3 +8,5 @@
     php artisan make:model Contact -mfr --api
 
 3. modificamos la tabla CONTACT y se creo su fabrica
+
+4. modificamos el modelo contact y el controlador.
