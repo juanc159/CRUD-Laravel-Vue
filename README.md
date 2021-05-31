@@ -2,3 +2,4 @@
 
 1. autenticacion de usuario con UI
     composer require laravel/ui
+    php artisan ui vue --auth
