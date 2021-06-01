@@ -67,10 +67,11 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         //
-        $contact->update($request->all());
-        /*$fields = $request->validate([
+        //$contact->update($request->all());
+        $fields = $request->validate([
             'first_name' => 'required|string',
             'last_name'  => 'required|string',
+            'email'  => 'required|email',
             'phone'      => 'required',
             'address'    => 'required'
         ]);
@@ -78,9 +79,10 @@ class ContactController extends Controller
         $contact->update([
             'first_name' => $fields['first_name'],
             'last_name'  => $fields['last_name'],
+            'email'  => $fields['email'],
             'phone'      => $fields['phone'],
             'address'    => $fields['address']
-        ]);*/
+        ]);
     }
 
     /**

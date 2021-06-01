@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <table id="tabla_contacts" class="table table-striped table-hover">
+        <table id="tabla_contacts" class="table table-striped table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -60,20 +60,9 @@
                     <th scope="col">Email</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Direccion</th>
-                    <th scope="col" colspan="2" class="text-center">Accion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="contact in contactos" :key="contact.id">
-                    <th scope="row">{{contact.id}}</th>
-                    <td>{{contact.first_name}}</td>
-                    <td>{{contact.last_name}}</td>
-                    <td>{{contact.email}}</td>
-                    <td>{{contact.phone}}</td>
-                    <td>{{contact.address}}</td>
-                    <td><button class="btn btn-warning"   @click="update = true; open_modal(contact)">Editar</button></td>
-                    <td><button class="btn btn-danger" @click='eliminar(contact.id)'>Eliminar</button></td>
-                </tr>
             </tbody>
             </table>
     </div>
@@ -81,6 +70,7 @@
 
 
 <script>
+import datatable from 'datatables.net-bs4'
     export default {
         data(){
             return{
@@ -98,13 +88,30 @@
                 }
             }
         },
-        created() {
-            this.list()
+        mounted() {
+            this.list();
         },
         methods: {
-            async list (){
-                const res = await axios.get('contacts');
-                this.contactos = res.data;
+            //async mytable(){
+            //    this.$nextTick(()=>{
+            //        $('#tabla_contacts').DataTable();
+            //    });
+            //},
+            list(){
+                axios.get('contacts').then(res=>{
+                    $('#tabla_contacts').DataTable({
+                        data: res.data,
+                        columns: [
+                                {data: 'id'},
+                                {data: 'first_name'},
+                                {data: 'last_name'},
+                                {data: 'email'},
+                                {data: 'phone'},
+                                {data: 'address'}
+                            ]
+                    });
+                });
+                //this.contactos = res.data;
             },
             async eliminar (id){
                 const res = await axios.delete('contacts/'+id);

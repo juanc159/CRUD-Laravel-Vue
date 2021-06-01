@@ -23,5 +23,12 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "datatables": "^1.10.18",
+        "datatables.net-bs4": "^1.10.24",
+        "datatables.net-buttons-bs4": "^1.7.0",
+        "jszip": "^3.6.0",
+        "pdfmake": "^0.1.71"
     }
 }
