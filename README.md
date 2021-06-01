@@ -19,22 +19,22 @@ _proyecto elaborado con Laravel y Vue, con integracion de Datatable_
 # 5. agregar DATATABLE a laravel con vue:
 
 ### a. Forma con NPM: [video youtube](https://www.youtube.com/watch?v=P1Ci-dY9Hes&t=60s)
-_1) ir a la pagina de_ [Datatable](https://datatables.net/download/)
-_2) escoger el paquete de bootstrap 4 y los botones_
-_3)en CDN quitar el minificado_
-_4) copiar los comandos que estan en el NPM_
+1) ir a la pagina de [Datatable](https://datatables.net/download/)
+2) escoger el paquete de bootstrap 4 y los botones
+3)en CDN quitar el minificado
+4) copiar los comandos que estan en el NPM
             ```
             npm install --save jszip
             npm install --save pdfmake
             npm install --save datatables.net-bs4
             npm install --save datatables.net-buttons-bs4
             ```
-_5) requerir los paquetes instalados_
-_5.1) importar en el componente en que es necesario el datatable_
+5) requerir los paquetes instalados
+5.1) importar en el componente en que es necesario el datatable
                 ```
                 import datatable from 'datatables.net-bs4'
                 ```
-_5.2) en el archivo global app.js de los componentes de vue solo si los requiere en todas las vistas pero como lo vamos a requeriri en una sola (EN ESTE CASO) lo importamos en el componente_
+5.2) en el archivo global app.js de los componentes de vue solo si los requiere en todas las vistas pero como lo vamos a requeriri en una sola (EN ESTE CASO) lo importamos en el componente
                     ```
                     require( 'jszip' );
                     require( 'pdfmake' );
@@ -44,9 +44,9 @@ _5.2) en el archivo global app.js de los componentes de vue solo si los requiere
                     require( 'datatables.net-buttons/js/buttons.html5.js' )();
                     require( 'datatables.net-buttons/js/buttons.print.js' )();
                     ```
-_6) solo para listar sin botones:_
-_6.1) en la tabla en el elemento tbody no agregar td ni tr dentro_
-_6.2) agregar o modificar el metodo donde se listan los registros_
+6) solo para listar sin botones:
+6.1) en la tabla en el elemento tbody no agregar td ni tr dentro
+6.2) agregar o modificar el metodo donde se listan los registros
                 ```
                 list(){
                     axios.get('contacts').then(res=>{
