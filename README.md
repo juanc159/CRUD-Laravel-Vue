@@ -73,7 +73,7 @@ require( 'datatables.net-buttons/js/buttons.print.js' )();
                 }
 ```
 
-7) PARA LISTAR CON BOTONES:
+7. PARA LISTAR CON BOTONES:
 * en la tabla en el elemento tbody, se debe usar tr y td con el v-for de vue para recorer los registros de la lista
 * se agregan estos dos metodos son mas cortos y mas entendibles
 * IMPORTANTE!!! si no funciona siguiendo estos pasos, debe revisar la tabla, puede que la cantidad de columnas en "thead" no sea igual a "tbody"
@@ -92,6 +92,28 @@ require( 'datatables.net-buttons/js/buttons.print.js' )();
                 },
 ```
 
+8. BOTONES ESPECIALES (COPY, PDF)
+* Se debe modificar la parte de las importaciones de l siguiente manera
+```
+//PARA REUQERIR LOS BOTONES ESPECIALES
+require( 'datatables.net-buttons/js/dataTables.buttons' );
+require( 'datatables.net-buttons/js/buttons.html5' );
+
+//PARA IMPORTAR EL DATATABLE
+import datatable from 'datatables.net-bs4'
+//PARA IMPORTAR LOS BOTONES ESPECILES
+import print from 'datatables.net-buttons/js/buttons.print'
+import jszip from 'jszip/dist/jszip'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs; //esto es para que funcione el boton PDF
+window.JSZip = jszip; //esta linea es para que muestre y fucione el boton EXCEL
+```
+* Se agrega lo siguiente en (resource/sass/app.scss) para que muestre los mensajes en las acciones de los botones.
+```
+@import '~datatables.net-buttons-bs4/css/buttons.bootstrap4';
+```
+* para arreglar y dise;ar los botones ver el componente contacto.vue
 
             
 

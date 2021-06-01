@@ -6,3 +6,5 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// agregamos esta linea para que se muestren los mensajes con el css de bootstrap (EJEMPLO EL MENSAJE cuando se da click en el boton COPIAR de DATATABLE)
+@import '~datatables.net-buttons-bs4/css/buttons.bootstrap4';

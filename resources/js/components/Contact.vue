@@ -83,7 +83,20 @@
 
 
 <script>
+//PARA REUQERIR LOS BOTONES ESPECIALES
+require( 'datatables.net-buttons/js/dataTables.buttons' );
+require( 'datatables.net-buttons/js/buttons.html5' );
+
+//PARA IMPORTAR EL DATATABLE
 import datatable from 'datatables.net-bs4'
+//PARA IMPORTAR LOS BOTONES ESPECILES
+import print from 'datatables.net-buttons/js/buttons.print'
+import jszip from 'jszip/dist/jszip'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs; //esto es para que funcione el boton PDF
+window.JSZip = jszip; //esta linea es para que muestre y fucione el boton EXCEL
+
     export default {
         data(){
             return{
@@ -109,7 +122,50 @@ import datatable from 'datatables.net-bs4'
             //METODO PARA LISTAR CON BOTONES
              mytable(){
                 this.$nextTick(()=>{
-                    $('#tabla_contacts').DataTable();
+                    $('#tabla_contacts').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                                //Botón para COPY
+                                'extend': 'copyHtml5',
+                                'titleAttr': 'Copiar',
+                                'className': 'btn btn-secondary',
+                                'text': 'Copiar'
+                            },
+                            {
+                                //Botón para Excel
+                                'extend': 'excelHtml5',
+                                'titleAttr': 'Excel',
+                                'className': 'btn btn-success',
+                                'text': '<i class="fas fa-file-excel"></i> Excel',
+                                'filename': 'Listado Contactos'
+                            },
+                            //Botón para PDF
+                            {
+                                'extend': 'pdfHtml5',
+                                'titleAttr': 'Pdf',
+                                'className': 'btn btn-danger',
+                                'text': '<i class="fas fa-file-pdf"></i> PDF',
+                                'filename': 'Listado Contactos'
+                            },
+                            //Botón para CSV
+                            {
+                                'extend': 'csvHtml5',
+                                'titleAttr': 'Csv',
+                                'className': 'btn btn-info',
+                                'text': '<i class="fas fa-file-csv"></i> Csv',
+                                'filename': 'Listado Contactos'
+                            },
+                            //IMPRIMIR
+                            {
+                                'extend': 'print',
+                                'titleAttr': 'Imprimir',
+                                'className': 'btn btn-dark',
+                                'text': 'Imprimir',
+                                'autoPrint': false
+                            }
+                        ]
+                    });
                 })
             },
             list(){
