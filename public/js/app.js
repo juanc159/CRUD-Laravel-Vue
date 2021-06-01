@@ -1937,6 +1937,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -1959,33 +1970,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.list();
   },
   methods: {
-    //async mytable(){
-    //    this.$nextTick(()=>{
-    //        $('#tabla_contacts').DataTable();
-    //    });
-    //},
-    list: function list() {
-      axios.get('contacts').then(function (res) {
-        $('#tabla_contacts').DataTable({
-          data: res.data,
-          columns: [{
-            data: 'id'
-          }, {
-            data: 'first_name'
-          }, {
-            data: 'last_name'
-          }, {
-            data: 'email'
-          }, {
-            data: 'phone'
-          }, {
-            data: 'address'
-          }]
-        });
-      }); //this.contactos = res.data;
+    //METODO PARA LISTAR CON BOTONES
+    mytable: function mytable() {
+      this.$nextTick(function () {
+        $('#tabla_contacts').DataTable();
+      });
     },
-    eliminar: function eliminar(id) {
+    list: function list() {
       var _this = this;
+
+      axios.get('contacts').then(function (res) {
+        _this.contactos = res.data;
+      });
+    },
+    //metodo para listar SIN BOTONES
+
+    /*
+    list(){
+        axios.get('contacts').then(res=>{
+            $('#tabla_contacts').DataTable({
+                data: res.data,
+                columns: [
+                        {data: 'id'},
+                        {data: 'first_name'},
+                        {data: 'last_name'},
+                        {data: 'email'},
+                        {data: 'phone'},
+                        {data: 'address'}
+                    ]
+            });
+        });
+        //this.contactos = res.data;
+    },*/
+    eliminar: function eliminar(id) {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var res;
@@ -1999,7 +2017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 res = _context.sent;
 
-                _this.list();
+                _this2.list();
 
               case 4:
               case "end":
@@ -2010,7 +2028,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     save: function save() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var res, _res;
@@ -2019,13 +2037,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!_this2.update) {
+                if (!_this3.update) {
                   _context2.next = 7;
                   break;
                 }
 
                 _context2.next = 3;
-                return axios.put('/contacts/' + _this2.id, _this2.contact);
+                return axios.put('/contacts/' + _this3.id, _this3.contact);
 
               case 3:
                 res = _context2.sent;
@@ -2035,15 +2053,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
                 _context2.next = 9;
-                return axios.post('/contacts', _this2.contact);
+                return axios.post('/contacts', _this3.contact);
 
               case 9:
                 _res = _context2.sent;
 
               case 10:
-                _this2.close_modal();
+                _this3.close_modal();
 
-                _this2.list();
+                _this3.list();
 
               case 12:
               case "end":
@@ -2054,32 +2072,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     open_modal: function open_modal(data) {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (_this3.update) {
-                  _this3.tilte_modal = 'MODIFICAR CONTACTO ' + data.id;
-                  _this3.id = data.id;
-                  _this3.contact.first_name = data.first_name;
-                  _this3.contact.last_name = data.last_name;
-                  _this3.contact.email = data.email;
-                  _this3.contact.phone = data.phone;
-                  _this3.contact.address = data.address; //console.log(this.contact);
+                if (_this4.update) {
+                  _this4.tilte_modal = 'MODIFICAR CONTACTO ' + data.id;
+                  _this4.id = data.id;
+                  _this4.contact.first_name = data.first_name;
+                  _this4.contact.last_name = data.last_name;
+                  _this4.contact.email = data.email;
+                  _this4.contact.phone = data.phone;
+                  _this4.contact.address = data.address; //console.log(this.contact);
                 } else {
-                  _this3.tilte_modal = 'CREAR CONTACTO';
-                  _this3.id = 0;
-                  _this3.contact.first_name = '';
-                  _this3.contact.last_name = '';
-                  _this3.contact.email = '';
-                  _this3.contact.phone = '';
-                  _this3.contact.address = '';
+                  _this4.tilte_modal = 'CREAR CONTACTO';
+                  _this4.id = 0;
+                  _this4.contact.first_name = '';
+                  _this4.contact.last_name = '';
+                  _this4.contact.email = '';
+                  _this4.contact.phone = '';
+                  _this4.contact.address = '';
                 }
 
-                _this3.form_modal = true;
+                _this4.form_modal = true;
 
               case 2:
               case "end":
@@ -2090,14 +2108,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     close_modal: function close_modal() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this4.form_modal = false;
+                _this5.form_modal = false;
 
               case 1:
               case "end":
@@ -54325,7 +54343,70 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c(
+      "table",
+      {
+        staticClass:
+          "table table-striped table-hover table-bordered text-center",
+        attrs: { id: "tabla_contacts" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.contactos, function(contact) {
+            return _c("tr", { key: contact.id }, [
+              _c("th", { attrs: { scope: "row" } }, [
+                _vm._v(_vm._s(contact.id))
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(contact.first_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(contact.last_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(contact.email))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(contact.phone))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(contact.address))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    on: {
+                      click: function($event) {
+                        _vm.update = true
+                        _vm.open_modal(contact)
+                      }
+                    }
+                  },
+                  [_vm._v("Editar")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.eliminar(contact.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Eliminar")]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -54333,32 +54414,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      {
-        staticClass: "table table-striped table-hover table-bordered",
-        attrs: { id: "tabla_contacts" }
-      },
-      [
-        _c("thead", { staticClass: "thead-dark" }, [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Apellido")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Direccion")])
-          ])
-        ]),
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("tbody")
-      ]
-    )
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Apellido")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Direccion")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", colspan: "2" } }, [
+          _vm._v("Acciones")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
