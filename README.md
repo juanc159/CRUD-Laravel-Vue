@@ -80,7 +80,7 @@ require( 'datatables.net-buttons/js/buttons.print.js' )();
                         this.contactos = res.data;
                     });
                 },
-\```
+```
 
 
             
