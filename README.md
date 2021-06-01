@@ -19,8 +19,7 @@ _proyecto elaborado con Laravel y Vue, con integracion de Datatable_
 # 5. agregar DATATABLE a laravel con vue:
 
 ### a. Forma con NPM: [video youtube](https://www.youtube.com/watch?v=P1Ci-dY9Hes&t=60s)
-_
-    _1) ir a la pagina de_ [Datatable](https://datatables.net/download/)
+_1) ir a la pagina de_ [Datatable](https://datatables.net/download/)
     _2) escoger el paquete de bootstrap 4 y los botones_
     _3)en CDN quitar el minificado_
     _4) copiar los comandos que estan en el NPM_
