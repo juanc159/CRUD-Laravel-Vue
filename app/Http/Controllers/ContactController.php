@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return Contact::OrderBy('id','desc')->get();
+        return Contact::OrderBy('id','DESC')->get();
     }
 
     /**

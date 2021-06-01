@@ -76,16 +76,18 @@ require( 'datatables.net-buttons/js/buttons.print.js' )();
 7) PARA LISTAR CON BOTONES:
 * en la tabla en el elemento tbody, se debe usar tr y td con el v-for de vue para recorer los registros de la lista
 * se agregan estos dos metodos son mas cortos y mas entendibles
+* IMPORTANTE!!! si no funciona siguiendo estos pasos, debe revisar la tabla, puede que la cantidad de columnas en "thead" no sea igual a "tbody"
 
 ```
                 mytable(){
                 this.$nextTick(()=>{
                     $('#tabla_contacts').DataTable();
-                });
+                })
                 },
                 list(){
                     axios.get('contacts').then(res=>{
                         this.contactos = res.data;
+                        this.mytable();
                     });
                 },
 ```

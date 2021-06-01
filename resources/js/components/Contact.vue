@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <table id="tabla_contacts" class="table table-striped table-hover table-bordered text-center">
+        <table id="tabla_contacts" class="table table-striped table-hover table-bordered text-center" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -60,7 +60,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Direccion</th>
-                    <th scope="col" colspan="2">Acciones</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,8 +71,10 @@
                     <td>{{contact.email}}</td>
                     <td>{{contact.phone}}</td>
                     <td>{{contact.address}}</td>
-                    <td><button class="btn btn-warning"   @click="update = true; open_modal(contact)">Editar</button></td>
-                    <td><button class="btn btn-danger" @click='eliminar(contact.id)'>Eliminar</button></td>
+                    <td>
+                        <button class="btn btn-warning"   @click="update = true; open_modal(contact)">Editar</button>
+                        <button class="btn btn-danger" @click='eliminar(contact.id)'>Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -101,21 +103,21 @@ import datatable from 'datatables.net-bs4'
         },
         mounted() {
             this.list();
+            
         },
         methods: {
             //METODO PARA LISTAR CON BOTONES
              mytable(){
                 this.$nextTick(()=>{
                     $('#tabla_contacts').DataTable();
-                });
+                })
             },
             list(){
                 axios.get('contacts').then(res=>{
                     this.contactos = res.data;
+                    this.mytable();
                 });
             },
-
-
             //metodo para listar SIN BOTONES
             /*
             list(){
@@ -140,9 +142,7 @@ import datatable from 'datatables.net-bs4'
             },
             async save(){
                 if(this.update){
-                    
                     const res = await axios.put('/contacts/'+this.id,this.contact);
-                    console.log(res);
                 }else{
                     //console.log(this.contact);
                     const res = await axios.post('/contacts',this.contact);

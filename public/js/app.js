@@ -1948,6 +1948,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -1981,6 +1983,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.get('contacts').then(function (res) {
         _this.contactos = res.data;
+
+        _this.mytable();
       });
     },
     //metodo para listar SIN BOTONES
@@ -2038,7 +2042,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (!_this3.update) {
-                  _context2.next = 7;
+                  _context2.next = 6;
                   break;
                 }
 
@@ -2047,23 +2051,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 res = _context2.sent;
-                console.log(res);
-                _context2.next = 10;
+                _context2.next = 9;
                 break;
 
-              case 7:
-                _context2.next = 9;
+              case 6:
+                _context2.next = 8;
                 return axios.post('/contacts', _this3.contact);
 
-              case 9:
+              case 8:
                 _res = _context2.sent;
 
-              case 10:
+              case 9:
                 _this3.close_modal();
 
                 _this3.list();
 
-              case 12:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -54348,6 +54351,7 @@ var render = function() {
       {
         staticClass:
           "table table-striped table-hover table-bordered text-center",
+        staticStyle: { width: "100%" },
         attrs: { id: "tabla_contacts" }
       },
       [
@@ -54384,10 +54388,8 @@ var render = function() {
                     }
                   },
                   [_vm._v("Editar")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
+                ),
+                _vm._v(" "),
                 _c(
                   "button",
                   {
@@ -54428,9 +54430,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Direccion")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", colspan: "2" } }, [
-          _vm._v("Acciones")
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acciones")])
       ])
     ])
   }
